@@ -18,12 +18,13 @@ def get_quotes():
 
 quotes = get_quotes()
 
-if "default" not in st.session_state:
-    st.session_state["default"] = quotes.pop()["q"]
-
-my_area = st.write(st.session_state["default"])
-
-if st.button("Update default example"):
-    st.session_state["default"] = quotes.pop()["q"]
+if st.button("Get Inspired"):
+    quote_dict = quotes.pop()
+    author = quote_dict["a"]
+    quote = quote_dict["q"]
     print(len(quotes))
-    st.experimental_rerun()
+    st.subheader(quote)
+    st.caption(author)
+
+    if(len(quotes)) == 0 : 
+        get_quotes.clear()
